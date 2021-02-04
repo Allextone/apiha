@@ -32,7 +32,19 @@ let spaceParty = [ //братики в нашей вечеринке
 
 
 router.get("/", function(req, res) {
-    res.send(spaceParty);
+    let artist1 = spaceParty[0];
+    let nameArtist1 = artist1.name;
+
+    let artist2 = spaceParty[1];
+    let nameArtist2 = artist2.name;
+
+    let artist3 = spaceParty[2];
+    let nameArtist3 = artist3.name;
+
+    let artist4 = spaceParty[3];
+    let nameArtist4 = artist4.name;
+
+    res.send(`LineUп этой вечеринки: Организаторы вечеринки - ейкей "${nameArtist1}" и ейкей младший "${nameArtist2}". Так же буду присутствовать молодые и горячие "савці сівців": человек-вечеринОчка - "${nameArtist3}" и человек-фитоняшка - "${nameArtist4}"`);
 });
 
 router.get("/:id", function(req, res) {//по id перехожу к инфе о каждом братке
@@ -40,7 +52,15 @@ router.get("/:id", function(req, res) {//по id перехожу к инфе о
         return bratan.id === Number(req.params.id)
     });
     //if(req.params.id > 4) return res.sendStatus(404);//ошибка, если искаемого братка не будет в вечеринке
-    res.send(bratan);
+    if(bratan.name === "Maks") {
+        res.send(`Киевский-местный - ${bratan.name}`);
+    } else if(bratan.name === "Allex") {
+        res.send(`"Удача" его второе имя - ${bratan.name}`);
+    } else if(bratan.name === "Nil Armstrong") {
+        res.send(`Человек-космонавт - ${bratan.name}`);
+    } else if(bratan.name === "Toha") {
+        res.send(`Генератор упомрачительных мыслей - ${bratan.name}`);
+    }
 });
 
 router.post('/', function(req, res) {//добавляю братка
